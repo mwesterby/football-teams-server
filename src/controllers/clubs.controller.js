@@ -1,34 +1,44 @@
 const repository = require('../repositories/club-repository');
 
-const getClubs = (req, res, next) => {
+async function getClubs(req, res, next) {
     console.log("GET Clubs");
-    repository.findAll().then((clubs) => {
-        res.json(clubs);
-    }).catch((err) => {
+    try {
+        let clubs = await repository.findAll()
+        res.json(await parseClubs(clubs));
+    } catch (err) {
         next(err);
-    })
+    }
+
 }
 
-const putClub = async (req, res, next) => {
+async function putClub (req, res, next) {
     console.log("PUT Club");
     const {name, country, eliminated } = req.body;
     const _id = req.params.id;
 
-    repository
-    .add(_id, name, country, eliminated)
-    .then((club) => {
-        res.json(club);
-    })
-    .catch((error) => {
-        if(error.code == 11000) {
-            res.sendStatus(409);
-            console.log("Duplicate key")
-        } else {
-            next(error)
-        }
-    })
+    try {
+        let clubAdded = await repository.add(_id, name, country, eliminated)
+        res.json(parseClub(clubAdded));
+    } catch (err) {
+        next(err);
+    }
+}
 
-    
+async function parseClubs(clubs) {
+    parsedClubs = [];
+    clubs.forEach(club => {
+        parsedClubs.push(parseClub(club))
+    });
+    return parsedClubs;
+}
+
+function parseClub(club) {
+    return {
+        id: club._id,
+        name: club.name,
+        country: club.country,
+        eliminated: club.eliminated,
+    };
 }
 
 module.exports = {
