@@ -22,6 +22,23 @@ const club1Updated = {
 
 const club1id = 1;
 
+const clubWithNoName = {
+    country: 'England',
+    eliminated: false,
+}
+
+const clubWithNoCountry = {
+    name: 'Hull City',
+    eliminated: false,
+}
+
+const clubWithNoEliminatedStatus = {
+    name: 'Hull City',
+    country: 'England',
+}
+
+const emptyClub = {}
+
 describe('/api/v1/club', () => {
     afterEach('delete all clubs', async () => {
         await resetClubs();
@@ -44,6 +61,22 @@ describe('/api/v1/club', () => {
             const res3 = await getClubs();
             expect(res3.body).to.have.lengthOf(1); // Assert there is still only 1 club
 
+        });
+        it('returns 400 when a club with no name is provided', async () => {
+            const res = await addClub(club1id, clubWithNoName);
+            expect(res.status).to.equal(400);
+        });
+        it('returns 400 when a club with no country is provided', async () => {
+            const res = await addClub(club1id, clubWithNoCountry);
+            expect(res.status).to.equal(400);
+        });
+        it('returns 400 when a club with no eliminated status is provided', async () => {
+            const res = await addClub(club1id, clubWithNoEliminatedStatus);
+            expect(res.status).to.equal(400);
+        });
+        it('returns 400 when an empty club is provided', async () => {
+            const res = await addClub(club1id, emptyClub);
+            expect(res.status).to.equal(400);
         });
     });
     describe('GET /club/{id}', () => {

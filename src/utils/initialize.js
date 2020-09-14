@@ -11,7 +11,6 @@ async function addClub (club) {
 }
 
 function populate() {
-    console.log("Adding initial clubs...")
     excelParser.retrieveClubs().then((clubs) => {
         clubs.forEach(async club => {
             await addClub(club);

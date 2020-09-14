@@ -16,13 +16,17 @@ async function getClub(req, res, next) {
 }
 
 async function putClub (req, res, next) {
-    const {name, country, eliminated } = req.body;
+    const { name, country, eliminated } = req.body;
     const _id = req.params.id;
-    try {
-        let clubAdded = await repository.add(_id, name, country, eliminated)
-        res.json(parseClub(clubAdded));
-    } catch (err) {
-        next(err);
+    if (!name || !country || eliminated == null || !_id ) {
+        res.sendStatus(400);
+    } else {
+        try {
+            let clubAdded = await repository.add(_id, name, country, eliminated)
+            res.json(parseClub(clubAdded));
+        } catch (err) {
+            next(err);
+        }
     }
 }
 
