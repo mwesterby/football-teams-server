@@ -8,8 +8,4 @@ router
     .route('/')
     .get(clubsController.getClubs);
 
-router
-    .route('/:id')
-    .put(clubsController.putClub);
-
 module.exports = router;

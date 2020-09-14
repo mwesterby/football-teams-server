@@ -5,7 +5,7 @@ const routes = require('./routes');
 const { connectDb } = require('./models');
 const port = process.env.SERVER_PORT || 3000;
 const middleware = require('./middleware');
-const populate = require('./utils/populate');
+const initialize = require('./utils/initialize');
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use(middleware.errorHandler.handleErrors)
 connectDb().then(() => {
     app.listen(port, () => {
         console.log(`Server listining on port ${port}`)
-        populate.populate();
+        initialize.populate();
     });
 })
 

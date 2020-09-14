@@ -5,12 +5,6 @@ class ClubRepository {
         this.model = model;
     }
 
-    // add(_id, name, country, eliminated) {
-    //     const clubToAdd = { _id, name, country, eliminated };
-    //     const clubToSave = new this.model(clubToAdd);
-    //     return clubToSave.save();
-    // }
-
     add(_id, name, country, eliminated) {
         const clubToAdd = { _id, name, country, eliminated };
         const filter = { _id: _id };
@@ -34,18 +28,6 @@ class ClubRepository {
     deleteById(id) {
         return this.model.findByIdAndDelete(id);
     }
-
-    updateById(_id, object) {
-        const query = { _id: _id };
-        return this.model.findOneAndUpdate(query, {
-            $set: {
-                name: object.name,
-                country: object.country,
-                eliminated: object.eliminated,
-            },
-        });
-    }
-
 }
 
 module.exports = new ClubRepository(club);
