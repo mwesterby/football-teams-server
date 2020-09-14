@@ -35,12 +35,9 @@ describe('/api/v1/clubs', () => {
             expect(res.body[1]).to.include(club2);
             expect(res.body).to.have.lengthOf(2);
         });
-    });
-    describe('GET /clubs', () => {
         it('returns 404 when there are no clubs to return', async () => {
             const res = await getClubs();
             expect(res.status).to.equal(404);
         });
     });
-
 });

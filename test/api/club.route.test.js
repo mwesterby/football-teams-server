@@ -32,8 +32,6 @@ describe('/api/v1/club', () => {
             expect(res.status).to.equal(200);
             expect(res.body).to.include(club1);
         });
-    });
-    describe('PUT /club/{id}', () => {
         it('returns 200 and updates the existing club data', async () => {
             const res1 = await addClub(club1id, club1);
             expect(res1.status).to.equal(200);
@@ -55,8 +53,6 @@ describe('/api/v1/club', () => {
             expect(res.status).to.equal(200);
             expect(res.body).to.include(club1);
         });
-    });
-    describe('GET /club/{id}', () => {
         it('returns 404 if a club with the provided id does not exist', async () => {
             const res = await getClub(club1id);
             expect(res.status).to.equal(404);
@@ -69,8 +65,6 @@ describe('/api/v1/club', () => {
             expect(res.status).to.equal(200);
             expect(res.body).to.include(club1);
         });
-    });
-    describe('DELETE /club/{id}', () => {
         it('returns 404 if a club with the provided id does not exist', async () => {
             const res = await deleteClub(club1id);
             expect(res.status).to.equal(404);
