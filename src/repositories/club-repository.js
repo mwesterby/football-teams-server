@@ -9,8 +9,6 @@ class ClubRepository {
         const clubToAdd = { _id, name, country, eliminated };
         const filter = { _id: _id };
         const clubToSave = new this.model(clubToAdd);
-    
-        console.log(clubToSave);
         return this.model.findOneAndUpdate(filter, clubToSave, {
             new: true,
             upsert: true,

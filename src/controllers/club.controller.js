@@ -2,9 +2,7 @@ const repository = require('../repositories/club-repository');
 const { parseClub } = require('./clubParser');
 
 async function getClub(req, res, next) {
-    console.log("GET Club");
     const _id = req.params.id
-
     try {
         let club = await repository.findById(_id);
         if (!club) {
@@ -18,10 +16,8 @@ async function getClub(req, res, next) {
 }
 
 async function putClub (req, res, next) {
-    console.log("PUT Club");
     const {name, country, eliminated } = req.body;
     const _id = req.params.id;
-
     try {
         let clubAdded = await repository.add(_id, name, country, eliminated)
         res.json(parseClub(clubAdded));
@@ -31,9 +27,7 @@ async function putClub (req, res, next) {
 }
 
 async function deleteClub (req, res, next) {
-    console.log("DELETE Club")
     const _id = req.params.id;
-
     try {
         let deletedClub = await repository.deleteById(_id);
         if (!deletedClub) {

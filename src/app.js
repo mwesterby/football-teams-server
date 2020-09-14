@@ -16,8 +16,11 @@ app.use(middleware.errorHandler.handleErrors)
 
 connectDb().then(() => {
     app.listen(port, () => {
-        console.log(`Server listining on port ${port}`)
-        initialize.populate();
+        console.log(`Server listining on port ${port}`)       
+        if(process.env.NODE_ENV == undefined || !process.env.NODE_ENV == 'test') {
+            console.log("NOT A TEST");
+            // initialize.populate();
+        }
     });
 })
 
