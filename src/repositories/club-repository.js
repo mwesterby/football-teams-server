@@ -5,10 +5,22 @@ class ClubRepository {
         this.model = model;
     }
 
+    // add(_id, name, country, eliminated) {
+    //     const clubToAdd = { _id, name, country, eliminated };
+    //     const clubToSave = new this.model(clubToAdd);
+    //     return clubToSave.save();
+    // }
+
     add(_id, name, country, eliminated) {
         const clubToAdd = { _id, name, country, eliminated };
+        const filter = { _id: _id };
         const clubToSave = new this.model(clubToAdd);
-        return clubToSave.save();
+    
+        console.log(clubToSave);
+        return this.model.findOneAndUpdate(filter, clubToSave, {
+            new: true,
+            upsert: true,
+        });
     }
 
     findAll() {
