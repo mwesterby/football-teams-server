@@ -1,5 +1,5 @@
 const excelParser = require('./excelParser');
-const repository = require('../repositories/club-repository');
+const repository = require('../repositories/club.repository');
 
 async function addClub (club) {
     const { _id, name, country, eliminated } = club;

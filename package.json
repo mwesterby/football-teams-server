@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node src/app",
-    "test": "NODE_ENV=test nyc mocha 'test/**/*test.js' --exit"
+    "test": "NODE_ENV=test nyc mocha 'test/**/*test.js' --exit",
+    "test-github": "docker run -d --name local-mongo -p 27017:27017 mongo:3.4.15 && NODE_ENV=test nyc mocha 'test/**/*test.js' --exit"
   },
   "keywords": [
     "football"

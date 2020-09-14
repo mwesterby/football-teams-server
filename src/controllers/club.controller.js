@@ -1,4 +1,4 @@
-const repository = require('../repositories/club-repository');
+const repository = require('../repositories/club.repository');
 const { parseClub } = require('./clubParser');
 
 async function getClub(req, res, next) {
