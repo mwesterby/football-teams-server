@@ -16,7 +16,7 @@ npm install
 
 ## Usage
 
-**Note**: The server requires a local mongo instance to be running. You can start one docker with:
+**Note**: The server requires a local mongo instance to be running. You can start one with [docker](https://www.docker.com/) using:
 ```sh
 docker run -d --name local-mongo -p 27017:27017
 ```
@@ -33,7 +33,7 @@ npm test
 ```
 
 ## API Docs
-Docs can be found at `http://localhost:3000/api-docs/`  when the server is running.
+Docs can be found at [`http://localhost:3000/api-docs/`](http://localhost:3000/api-docs/)  when the server is running.
 
 ## Author
 
