@@ -18,7 +18,7 @@ npm install
 
 **Note**: The server requires a local mongo instance to be running. You can start one with [docker](https://www.docker.com/) using:
 ```sh
-docker run -d --name local-mongo -p 27017:27017
+docker run -d --name local-mongo -p 27017:27017 mongo
 ```
 
 And then start the server with:
